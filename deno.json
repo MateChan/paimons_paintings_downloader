@@ -1,0 +1,14 @@
+{
+  "fmt": {
+    "semiColons": false
+  },
+  "imports": {
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "ky": "npm:ky@^1.7.4"
+  },
+  "tasks": {
+    "start": {
+      "command": "deno -NW main.ts"
+    }
+  }
+}
