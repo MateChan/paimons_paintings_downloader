@@ -36,13 +36,14 @@ async function main() {
     const saveDir = join(baseSaveDir, volume.padStart(2, "0"))
     await Deno.mkdir(saveDir, { recursive: true })
 
-    details.forEach(async ({ url, id }, i) => {
+    details.forEach(async ({ url }, i) => {
       const emojiUrl = url.split("?")[0]
-      const fileName = id + extname(emojiUrl)
+      const fileName = String(i + 1).padStart(2, "0") + extname(emojiUrl)
       const savePath = join(saveDir, fileName)
 
       const blob = await ky(emojiUrl).blob()
-      Deno.writeFile(savePath, blob.stream())
+      await Deno.writeFile(savePath, blob.stream())
+      console.log(savePath)
     })
   })
 }
