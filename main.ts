@@ -41,7 +41,7 @@ async function main() {
       const fileName = String(i + 1).padStart(2, "0") + extname(emojiUrl)
       const savePath = join(saveDir, fileName)
 
-      const blob = await ky(emojiUrl).blob()
+      const blob = await ky(emojiUrl, { timeout: 60_000 }).blob()
       await Deno.writeFile(savePath, blob.stream())
       console.log(savePath)
     })
